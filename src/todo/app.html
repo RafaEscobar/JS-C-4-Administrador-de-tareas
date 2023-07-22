@@ -1,9 +1,20 @@
-<div class="">
-    <div>
-        <input id="new-todo-input" class="" placeholder="Ingresa una nueva tarea:" autofocus>
+<div class="p-8">
+    <!--* Agregar una nueva tarea -->
+    <div class="flex">
+        <div class="w-full">
+            <input type="search" class="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none text-xl font-extralight" placeholder="Ingresa una nueva tarea:" id="new-todo-input">
+        </div>
+        <div class="pl-2 flex justify-center items-center">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>              
+            </button>
+        </div>
     </div>
 
-    <div>
+    <!--* Mostrar tareas  -->
+    <!-- <div>
         <input id="toggle-all" type="checkbox">
         <label for="toggle-all">Marcar todos como completos</label>
         <ul class="">
@@ -11,26 +22,30 @@
                 <div class="">
                     <input class="" type="checkbox" checked>
                     <label>Probar JavaScript</label>
-                    <button class="destroy"></button>
+                    <button class=""></button>
                 </div>
-                <input class="edit" value="Create a TodoMVC template">
+                <input class="" value="Create a TodoMVC template">
             </li>
         </ul>
-    </div>
+    </div> -->
 
-    <div>
-        <span class=""><strong id="pending-count">0</strong> pendiente(s)</span>
-        <ul class="filters">
-            <li>
-                <a class="" href="#/">Todos</a>
+    <!--* Utilidades -->
+    <div class="flex mt-4">
+        <span class="mr-4 font-semibold text-green-500">
+            <strong id="pending-count">0</strong> pendiente(s)
+        </span>
+        <ul class="flex gap-4 font-semibold">
+            <li class="transform hover:text-blue-200 transition duration-300 hover:scale-110">
+                <a href="#/" >Todos</a>
             </li>
-            <li>
-                <a class="" href="#/active">Pendientes</a>
+            <li class="transform hover:text-blue-200 transition duration-300 hover:scale-110">
+                <a href="#/active" >Pendientes</a>
             </li>
-            <li>
-                <a class="" href="#/completed">Completados</a>
+            <li class="transform hover:text-blue-200 transition duration-300 hover:scale-110">
+                <a href="#/completed">Completados</a>
             </li>
         </ul>
-        <button class="">Borrar completados</button>
+
+        <button class="transform ml-4 hover:text-red-500 font-semibold text-red-600 transition duration-300 hover:scale-110">Borrar completados</button>
     </div>
 </div>
