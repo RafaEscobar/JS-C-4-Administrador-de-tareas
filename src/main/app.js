@@ -1,9 +1,9 @@
 import cardTasks from "./cardTasks.html?raw";
-import myStore from "../storage/myStore"
+import myStore from "../storage/myStore";
 import { renderTasks } from "./useCases";
 
 const ElementsIds = {
-    renderElement: '.tasksList',
+    classRenderElement: '.tasksList',
 };
 
 /**
@@ -14,7 +14,7 @@ export const App = (elementId) => {
 
     const renderListTask = () => {
         const tasks = myStore.getAllTask( myStore.getFilter());
-        renderTasks(ElementsIds.renderElement, tasks);
+        renderTasks(ElementsIds.classRenderElement, tasks);
     }
 
     (() => {

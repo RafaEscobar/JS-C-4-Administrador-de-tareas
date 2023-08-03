@@ -4,7 +4,7 @@
         <div class="w-full">
             <input type="search" class="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none text-xl font-extralight" placeholder="Ingresa una nueva tarea:" id="new-todo-input">
         </div>
-        <div class="pl-2 flex justify-center items-center">
+        <div class="pl-2 flex justify-center items-center transform hover:text-blue-500 transition duration-300 hover:scale-110">
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -15,17 +15,16 @@
 
     <!--* Mostrar tareas  -->
     <div>
-        <input id="toggle-all" type="checkbox">
-        <label for="toggle-all">Marcar todos como completos</label>
-        <ul class="tasksList">
-            <li class="" data-id="abc">
-                <div class="">
-                    <input class="" type="checkbox" checked>
-                    <label>Probar JavaScript</label>
-                    <button class=""></button>
-                </div>
-                <input class="" value="Create a TodoMVC template">
-            </li>
+        <div class="w-full flex my-4">
+            <div class="flex flex-row">
+                <input type="checkbox" id="checkAll" class='appearance-none h-6 w-6 bg-white rounded-full checked:bg-blue-300 checked:scale-75 transition-all duration-200 peer'/>
+                <span class='h-6 w-6 absolute rounded-full pointer-events-none peer-checked:border-blue-300 peer-checked:border-2'>
+                </span>
+                <label for='checkAll' class='flex flex-col justify-center px-2 peer-checked:text-blue-400  select-none'>Marcar todos como completados</label>
+            </div>
+        </div>
+        <ul class="tasksList text-xl font-mono">
+            <!--* Tareas -->
         </ul>
     </div>
 
@@ -45,6 +44,6 @@
                 <a href="#/completed">Completados</a>
             </li>
         </ul>
-        <button class="transform ml-4 hover:text-red-500 font-semibold text-red-600 transition duration-300 hover:scale-110">Borrar completados</button>
+        <button class="ml-4 font-semibold text-red-500 hover:text-red-300">Borrar completados</sp>
     </div>
 </div>
