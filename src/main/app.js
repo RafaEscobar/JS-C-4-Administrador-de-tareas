@@ -4,6 +4,8 @@ import { renderTasks } from "./useCases";
 
 const ElementsIds = {
     classRenderElement: '.tasksList',
+    newInputTasks: '#inputNewTask',
+    btnNewTask: '#btnNewTask',
 };
 
 /**
@@ -23,4 +25,24 @@ export const App = (elementId) => {
         document.querySelector(elementId).append(boxMain);
         renderListTask();
     })();
+
+    const inputTask = document.querySelector(ElementsIds.newInputTasks);
+    const btnTask = document.querySelector(ElementsIds.btnNewTask);
+
+    inputTask.addEventListener('keyup', (event) => {
+        if( event.keyCode !== 13 ) return;
+        if( event.target.value.trim().length === 0 ) return;
+
+        myStore.addTask( event.target.value );
+        renderListTask();
+        event.target.value = '';
+    });
+
+    btnTask.addEventListener('click', () => {
+        if( inputTask.value.trim().length === 0 ) return;
+
+        myStore.addTask( inputTask.value );
+        renderListTask()
+        inputTask.value = '';
+    });
 }
