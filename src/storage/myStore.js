@@ -65,7 +65,20 @@ const addTask = (description) => {
 }
 
 /**
- ** Marcar como completada una tarea
+ * 
+ * @param {liId} id - Identificador del elemento <li> de la tarea
+ */
+const checkTask = (taskId) => {
+    state.tasks.map( (task) => {
+        if ( task.id === taskId ) {
+            task.done = !task.done;
+        }
+        return task;
+    });
+}
+
+/**
+ ** Marcar todas las tareas como completadas
  * @param {string} action - Acción a realizar, marcarlos o desmarcalos todos
  */
 const checkAllTask = (action) => {
@@ -80,6 +93,7 @@ const checkAllTask = (action) => {
     }
     console.log(state.tasks);
 }
+
 /**
  ** Borrar tarea  
  * @param {Id} id - Id de la tarea
@@ -97,7 +111,7 @@ const deleteCompletedTask = () => {
 
 /**
  ** Establecer el fitro 
- * @param {string} myFilter 
+ * @param {string} myFilter - All, Completed, Pending
  */
 const setFilter = (myFilter = Filters.All) => {
     state.filter = myFilter;
@@ -123,4 +137,5 @@ export default {
     setFilter,
     getFilter,
     getAllTask,
+    checkTask,
 };

@@ -29,6 +29,8 @@ export const App = (elementId) => {
 
     const inputTask = document.querySelector(ElementsIds.newInputTasks);
     const btnTask = document.querySelector(ElementsIds.btnNewTask);
+    const checktask = document.querySelector(ElementsIds.classRenderElement);
+    const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
 
     inputTask.addEventListener('keyup', (event) => {
         if( event.keyCode !== 13 ) return;
@@ -47,7 +49,11 @@ export const App = (elementId) => {
         inputTask.value = '';
     });
 
-    const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
+    checktask.addEventListener('click', (event) => {
+        const myElement = event.target.closest('[data-id]');
+        myStore.checkTask(myElement.getAttribute('data-id'));
+        renderListTask();
+    });
 
     btnCheckAll.addEventListener('change', (event) => {
         if ( event.target.checked ) {
