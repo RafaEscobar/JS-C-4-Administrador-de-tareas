@@ -6,6 +6,7 @@ const ElementsIds = {
     classRenderElement: '.tasksList',
     newInputTasks: '#inputNewTask',
     btnNewTask: '#btnNewTask',
+    btnCheckAll: '#checkAll',
 };
 
 /**
@@ -45,4 +46,16 @@ export const App = (elementId) => {
         renderListTask()
         inputTask.value = '';
     });
+
+    const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
+
+    btnCheckAll.addEventListener('change', (event) => {
+        if ( event.target.checked ) {
+            myStore.checkAllTask('check');
+        } else {
+            myStore.checkAllTask('NoCheck');
+        }
+        renderListTask();
+    });
+
 }

@@ -66,12 +66,20 @@ const addTask = (description) => {
 
 /**
  ** Marcar como completada una tarea
- * @param {Id} id - Id de la tarea
+ * @param {string} action - Acción a realizar, marcarlos o desmarcalos todos
  */
-const checkTask = (id) => {
-    //
+const checkAllTask = (action) => {
+    if ( action == 'check' ) {
+        state.tasks.map( (task) => {
+            return task.done = true;
+        });  
+    } else {
+        state.tasks.map( (task) => {
+            return task.done = false;
+        });
+    }
+    console.log(state.tasks);
 }
-
 /**
  ** Borrar tarea  
  * @param {Id} id - Id de la tarea
@@ -109,7 +117,7 @@ export default {
     initStore,
     loadStore,
     addTask,
-    checkTask,
+    checkAllTask,
     deleteTask,
     deleteCompletedTask,
     setFilter,
