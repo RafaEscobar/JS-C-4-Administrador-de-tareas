@@ -26,7 +26,26 @@ const state = {
  ** Inicialización del Store
  */
 const initStore = () => {
+    loadStore();
     console.log("Store inicializado");
+}
+
+/**
+ ** Ligar el state al state persistente en LocalStorage
+ */
+ const loadStore = () => {
+    if ( !localStorage.getItem('state') ) return;
+
+    const { tasks, filter } = JSON.parse( localStorage.getItem('state') );
+    state.tasks = tasks;
+    state.filter = filter;
+}
+
+/**
+ ** Guardamos el state de este momento en el item (state) del LocalStorage
+ */
+const saveStateToLocalStorage = () => {
+    localStorage.setItem('state', JSON.stringify(state));
 }
 
 /**
@@ -50,22 +69,16 @@ const getAllTask = (myFilter = Filters.All) => {
 }
 
 /**
- **
- */
-const loadStore = () => {
-    //
-}
-
-/**
  ** Agregar una nueva tarea
  */
 const addTask = (description) => {
     if (!description) throw new Error("La descripción de la tarea es requerida");
     state.tasks.push(new Task(description));
+    saveStateToLocalStorage();
 }
 
 /**
- * 
+ ** Marcamos como completa la tarea en cuestión
  * @param {liId} id - Identificador del elemento <li> de la tarea
  */
 const checkTask = (taskId) => {
@@ -75,6 +88,7 @@ const checkTask = (taskId) => {
         }
         return task;
     });
+    saveStateToLocalStorage();
 }
 
 /**
@@ -91,14 +105,16 @@ const checkAllTask = (action) => {
             return task.done = false;
         });
     }
+    saveStateToLocalStorage();
 }
 
 /**
- ** Borrar tarea  
+ ** Borrar la tarea en cuestión
  * @param {Id} id - Id de la tarea
  */
 const deleteTask = (taskId) => {
     state.tasks = state.tasks.filter( task => task.id !== taskId );
+    saveStateToLocalStorage();
 }
 
 /**
@@ -106,6 +122,7 @@ const deleteTask = (taskId) => {
  */
 const deleteCompletedTask = () => {
     state.tasks = state.tasks.filter( task => !task.done );
+    saveStateToLocalStorage();
 }
 
 /**
@@ -114,6 +131,7 @@ const deleteCompletedTask = () => {
  */
 const setFilter = (myFilter = Filters.All) => {
     state.filter = myFilter;
+    saveStateToLocalStorage();
 }
 
 /**
