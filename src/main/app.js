@@ -7,7 +7,6 @@ const ElementsIds = {
     newInputTasks: '#inputNewTask',
     btnNewTask: '#btnNewTask',
     btnCheckAll: '#checkAll',
-    btnDeleteTask: '.deleteTask',
 };
 
 /**
@@ -32,7 +31,6 @@ export const App = (elementId) => {
     const btnTask = document.querySelector(ElementsIds.btnNewTask);
     const checktask = document.querySelector(ElementsIds.classRenderElement);
     const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
-    const btnDeleteTask = document.querySelector(ElementsIds.btnDeleteTask);
 
     inputTask.addEventListener('keyup', (event) => {
         if( event.keyCode !== 13 ) return;
@@ -61,16 +59,6 @@ export const App = (elementId) => {
         myStore.checkTask(myElement.getAttribute('data-id'));
         renderListTask();
     });
-    
-    // checktask.addEventListener('click', (event) => {
-    //     const btnReference = event.target.id === 'deleteTask';
-    //     const myElement = event.target.closest('[data-id]');
-
-    //     if ( !btnReference ) return;
-    //     console.log(myElement);
-    //     myStore.checkTask(myElement.getAttribute('data-id'));
-    //     renderListTask();
-    // });
 
     btnCheckAll.addEventListener('change', (event) => {
         if ( event.target.checked ) {
