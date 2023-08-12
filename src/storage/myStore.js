@@ -120,7 +120,7 @@ const deleteTask = (taskId) => {
 /**
  ** Elimina todas las tarea completadas
  */
-const deleteCompletedTask = () => {
+const deleteCompletedTask = () => { 
     state.tasks = state.tasks.filter( task => !task.done );
     saveStateToLocalStorage();
 }

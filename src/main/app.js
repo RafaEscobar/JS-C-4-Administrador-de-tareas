@@ -7,6 +7,7 @@ const ElementsIds = {
     newInputTasks: '#inputNewTask',
     btnNewTask: '#btnNewTask',
     btnCheckAll: '#checkAll',
+    btnDeleteCompletedTasks: '#deleteCompletedTasks',
 };
 
 /**
@@ -31,6 +32,7 @@ export const App = (elementId) => {
     const btnTask = document.querySelector(ElementsIds.btnNewTask);
     const checktask = document.querySelector(ElementsIds.classRenderElement);
     const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
+    const btnDelCompletedTasks = document.querySelector(ElementsIds.btnDeleteCompletedTasks);
 
     inputTask.addEventListener('keyup', (event) => {
         if( event.keyCode !== 13 ) return;
@@ -66,6 +68,11 @@ export const App = (elementId) => {
         } else {
             myStore.checkAllTask('NoCheck');
         }
+        renderListTask();
+    });
+
+    btnDelCompletedTasks.addEventListener('click', () => {
+        myStore.deleteCompletedTask();
         renderListTask();
     });
 
