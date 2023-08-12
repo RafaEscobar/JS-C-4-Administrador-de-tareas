@@ -91,7 +91,6 @@ const checkAllTask = (action) => {
             return task.done = false;
         });
     }
-    console.log(state.tasks);
 }
 
 /**
