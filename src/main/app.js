@@ -1,6 +1,6 @@
 import cardTasks from "./cardTasks.html?raw";
 import myStore, { Filters } from "../storage/myStore";
-import { renderTasks } from "./useCases";
+import { pendingTask, renderTasks } from "./useCases";
 
 const ElementsIds = {
     classRenderElement: '.tasksList',
@@ -9,6 +9,7 @@ const ElementsIds = {
     btnCheckAll: '#checkAll',
     btnDeleteCompletedTasks: '#deleteCompletedTasks',
     filters: '.filtro',
+    pendingCountId: '#pending-count',
 };
 
 /**
@@ -17,9 +18,14 @@ const ElementsIds = {
  */
 export const App = (elementId) => {
 
+    const renderPendingTasks = () => {
+        pendingTask(ElementsIds.pendingCountId);
+    }
+
     const renderListTask = () => {
         const tasks = myStore.getAllTask( myStore.getFilter());
         renderTasks(ElementsIds.classRenderElement, tasks);
+        renderPendingTasks();
     }
 
     (() => {
@@ -28,6 +34,8 @@ export const App = (elementId) => {
         document.querySelector(elementId).append(boxMain);
         renderListTask();
     })();
+
+
 
     const inputTask = document.querySelector(ElementsIds.newInputTasks);
     const btnTask = document.querySelector(ElementsIds.btnNewTask);
@@ -85,7 +93,7 @@ export const App = (elementId) => {
             filters.forEach( liElementTwo => {
                 liElementTwo.classList.remove('selected');
             });
-            
+
             element.target.classList.add('selected');
 
             switch(element.target.text){
