@@ -97,6 +97,14 @@
 	transition: all 0.3s ease;
 } 
 
+.selected {
+	border: 2px solid white;
+	padding-left: 4px;
+	padding-right: 4px;
+	border-radius: 10px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
 
 @keyframes check-15 {
 	50% {

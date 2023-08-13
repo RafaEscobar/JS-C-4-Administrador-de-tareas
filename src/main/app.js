@@ -1,5 +1,5 @@
 import cardTasks from "./cardTasks.html?raw";
-import myStore from "../storage/myStore";
+import myStore, { Filters } from "../storage/myStore";
 import { renderTasks } from "./useCases";
 
 const ElementsIds = {
@@ -8,6 +8,7 @@ const ElementsIds = {
     btnNewTask: '#btnNewTask',
     btnCheckAll: '#checkAll',
     btnDeleteCompletedTasks: '#deleteCompletedTasks',
+    filters: '.filtro',
 };
 
 /**
@@ -33,6 +34,7 @@ export const App = (elementId) => {
     const checktask = document.querySelector(ElementsIds.classRenderElement);
     const btnCheckAll = document.querySelector(ElementsIds.btnCheckAll);
     const btnDelCompletedTasks = document.querySelector(ElementsIds.btnDeleteCompletedTasks);
+    const filters = document.querySelectorAll(ElementsIds.filters);
 
     inputTask.addEventListener('keyup', (event) => {
         if( event.keyCode !== 13 ) return;
@@ -74,6 +76,34 @@ export const App = (elementId) => {
     btnDelCompletedTasks.addEventListener('click', () => {
         myStore.deleteCompletedTask();
         renderListTask();
+    });
+
+
+    filters.forEach( liElement => {
+        liElement.addEventListener('click', (element) => {
+
+            filters.forEach( liElementTwo => {
+                liElementTwo.classList.remove('selected');
+            });
+            
+            element.target.classList.add('selected');
+
+            switch(element.target.text){
+                case 'Todos':
+                    myStore.setFilter(Filters.All);
+                break; 
+                case 'Pendientes':
+                    myStore.setFilter(Filters.Pending);
+                break;
+                case 'Completados':
+                    myStore.setFilter(Filters.Completed);
+                break;
+                default:
+                    return console.log('Error');
+                break;
+            }
+            renderListTask();
+        });
     });
 
 }

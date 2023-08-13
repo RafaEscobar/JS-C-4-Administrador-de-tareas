@@ -3,7 +3,7 @@ import { Task } from "../main/models/task.model";
 /**
  ** Filtros disponibles para las tareas
  */
-const Filters = {
+export const Filters = {
     All: 'All',
     Completed: 'Completed',
     Pending: 'Pending'
